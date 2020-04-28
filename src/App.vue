@@ -1,7 +1,7 @@
 <template>
   <div class="AppContainer">
     <!-- 我是header部分 -->
-    <mt-header fixed title="天亮教育"></mt-header>
+    <mt-header fixed title="赵倩"></mt-header>
 
     <!-- 我是contenter部分 -->
     <transition mode="out-in">
