@@ -1,7 +1,7 @@
 <template>
   <div class="AppContainer">
     <!-- 我是header部分 -->
-    <mt-header fixed title="赵倩"></mt-header>
+    <mt-header fixed title="web04赵倩"></mt-header>
 
     <!-- 我是contenter部分 -->
     <transition mode="out-in">
@@ -21,7 +21,7 @@
       </router-link>
       <router-link class="mui-tab-item" to="/shopCar">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge">0</span>
+          <span class="mui-badge" id='badge'>0</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -43,18 +43,20 @@ export default {
 </script>
 <style scoped>
 .AppContainer {
+  width: 100%;
   padding-top: 40px;
+  padding-bottom: 50px;
   overflow-x: hidden;
 }
-.v-enter.v-leave-to {
+.v-enter{
   opacity: 0;
   transform: translateX(100%);
 }
 .v-leave-to {
   transform: translateX(-100%);
 }
-.v-enter-active.v-leave-active {
-  transition: all 0.5s ease;
-  position: absolute;
+.v-enter-active,.v-leave-active {
+  transition: all .3s ease;
+  /* position: absolute; */
 }
 </style>

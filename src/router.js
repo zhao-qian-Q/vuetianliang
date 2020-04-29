@@ -14,6 +14,7 @@ import search from './components/tabbar/Search.vue'
 import newsList from './components/news/newsList.vue'
 // 引入购物列表那一页
 import goodsList from './components/goodsList/GoodsList.vue'
+import goodsInfo from './components/goodsList/Goodsinfo.vue'
 
 let router = new VueRouter({
     linkActiveClass: 'mui-active',
@@ -25,6 +26,8 @@ let router = new VueRouter({
         { path: '/search', component: search },
         { path: '/home/newsList', component: newsList },
         { path: '/home/goodsList', component: goodsList },
+        { path: '/home/goodsInfo/:id', component: goodsInfo },
+        
 
     ]
 })

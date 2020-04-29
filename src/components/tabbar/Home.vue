@@ -51,23 +51,11 @@
   </div>
 </template>
 <script>
-// import menu1 from '../../images/menu1.png'
-// import menu2 from '../../images/menu2.png'
-// import menu3 from '../../images/menu3.png'
-// import menu4 from '../../images/menu4.png'
-// import menu5 from '../../images/menu5.png'
-// import menu6 from '../../images/menu5.png'
-
 export default {
   data() {
     return {
       loopList: [], //存放数据读出来的图片
-      // menuImg1:menu1,
-      // menuImg2:menu2,
-      // menuImg3:menu3,
-      // menuImg4:menu4,
-      // menuImg5:menu5,
-      // menuImg6:menu6,
+    
     };
   },
   created() {

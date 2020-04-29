@@ -1,7 +1,7 @@
 <template>
   <div class="goodsContainer">
-    <div class="goodsBox" v-for='item in goodsList' :key='item.id'>
-      <div class="goodsHead">
+    <router-link :to="'/home/goodsInfo/'+item.id" class="goodsBox" v-for='item in goodsList' :key='item.id'>
+      <div class="goodsHead" tag='div'>
         <img :src="item.img_url" alt />
         <p>{{item.title}}</p>
       </div>
@@ -15,7 +15,7 @@
           <span>剩余{{item.own}}件</span>
         </div>
       </div>
-    </div>
+    </router-link>
    
   </div>
 </template>
