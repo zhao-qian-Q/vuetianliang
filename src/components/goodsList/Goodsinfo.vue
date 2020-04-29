@@ -3,18 +3,15 @@
     <!-- 放入购物车小球 -->
     <!-- 这是动画小球 -->
     <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
-      <div class="ball"  v-show='flag' ref='ball'></div>
+      <div class="ball" v-show="flag" ref="ball"></div>
     </transition>
 
     <!-- 轮播图 -->
     <div class="mui-card">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
-          <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in loopList" :key="item.id">
-              <img :src="item.img_url" alt />
-            </mt-swipe-item>
-          </mt-swipe>
+          <!-- 轮播图组件 -->
+          <loopBox :getloops="loopList"></loopBox>
         </div>
       </div>
     </div>
@@ -29,7 +26,7 @@
           </p>
           <p>
             <span>购买数量</span>
-            <numberBox @getCount='getSelectdCount'></numberBox>
+            <numberBox @getCount="getSelectdCount"></numberBox>
           </p>
           <p>
             <mt-button type="primary" size="small">点击购买</mt-button>
@@ -53,12 +50,13 @@
 </template>
 <script>
 import numberBox from "../numberBox/NumberBox.vue";
+import loopBox from "../loopcompontent/LoopCompontent.vue";
 export default {
   data() {
     return {
       loopList: [], //存放轮播图的
-      flag:false,
-      getSelectCount:''
+      flag: false,
+      getSelectCount: ""
     };
   },
   created() {
@@ -83,46 +81,40 @@ export default {
       el.style.transform = "translate(0,0)";
     },
     enter(el, done) {
-        el.offsetWidth;
-        // 获取小球位置
-        const ballPosition = this.$refs.ball.getBoundingClientRect();
-        // 获取徽标位置
-        // getBoundingClientRect()Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置
-        const  badgePosition = document.getElementById('badge').getBoundingClientRect();
-        const xPosition = badgePosition.left-ballPosition.left
-        const yPosition = badgePosition.top- ballPosition.top
-        // 小球位置以及徽标位置
-        // console.log('ball'+ballPosition);
-        // console.log('badge'+badgePosition);
-        // console.log(xPosition,yPosition)
+      el.offsetWidth;
+      // 获取小球位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      // 获取徽标位置
+      // getBoundingClientRect()Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置
+      const badgePosition = document
+        .getElementById("badge")
+        .getBoundingClientRect();
+      const xPosition = badgePosition.left - ballPosition.left;
+      const yPosition = badgePosition.top - ballPosition.top;
+      // 小球位置以及徽标位置
+      // console.log('ball'+ballPosition);
+      // console.log('badge'+badgePosition);
+      // console.log(xPosition,yPosition)
       el.style.transform = `translate(${xPosition}px,${yPosition}px)`;
       el.style.transition = "all 1s ease";
-      done()
+      done();
     },
     afterEnter(el) {
       this.flag = !this.flag;
     },
     // 父子组件传值
-    getSelectdCount(count){
+    getSelectdCount(count) {
       this.getSelectCount = count;
-      console.log('sss'+count)
-
+      console.log("sss" + count);
     }
   },
   components: {
-    numberBox
+    numberBox,
+    loopBox
   }
 };
 </script>
 <style scoped>
-
-.mint-swipe {
-  height: 200px;
-}
-.mint-swipe-item img {
-  width: 100%;
-  height: 100%;
-}
 .ball {
   width: 20px;
   height: 20px;

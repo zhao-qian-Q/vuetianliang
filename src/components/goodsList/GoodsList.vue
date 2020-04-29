@@ -34,9 +34,9 @@ export default {
       this.$http
         .get("http://yapi.shangyuninfo.com/mock/121/api/goodslist?pageindex=1")
         .then(result => {
-          console.log(result);
+          // console.log(result);
           this.goodsList = result.body.message;
-          console.log( this.goodsList)
+          // console.log( this.goodsList)
         })
         .catch();
     }

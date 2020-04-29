@@ -15,19 +15,23 @@ import newsList from './components/news/newsList.vue'
 // 引入购物列表那一页
 import goodsList from './components/goodsList/GoodsList.vue'
 import goodsInfo from './components/goodsList/Goodsinfo.vue'
+//引入图片分享页
+import shareImg from './components/shareImg/shareImg.vue'
 
 let router = new VueRouter({
     linkActiveClass: 'mui-active',
     routes: [
         { path: '/', redirect: 'home' },
-        {path: '/home', component: home},
+        { path: '/home', component: home },
         { path: '/member', component: member },
         { path: '/shopCar', component: shopCar },
         { path: '/search', component: search },
         { path: '/home/newsList', component: newsList },
         { path: '/home/goodsList', component: goodsList },
         { path: '/home/goodsInfo/:id', component: goodsInfo },
-        
+        { path: '/home/shareImg', component: shareImg },
+
+
 
     ]
 })

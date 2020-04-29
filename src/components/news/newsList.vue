@@ -33,9 +33,9 @@ export default {
       this.$http
         .get("http://yapi.shangyuninfo.com/mock/121/api/getnewslist")
         .then(result=>{
-            console.log(result)
-            this.newsList = result.body.message,
-            console.log(this.newList)
+            // console.log(result)
+            this.newsList = result.body.message
+            // console.log(this.newList)
             })
         .catch();
     }
