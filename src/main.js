@@ -32,6 +32,26 @@ Vue.use(VueResource)
 import mui from './lib/js/mui.js'
 Vue.prototype.mui = mui
 
+// 注册store
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+
+// vuex的实例化
+const store = new Vuex.Store({
+    state:{
+
+    },
+    mutations:{
+
+    },
+    getters:{
+        
+    }
+})
+
+
+
 let vm = new Vue({
     el: '#app',
     data: {

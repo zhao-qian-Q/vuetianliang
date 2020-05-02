@@ -51,6 +51,10 @@
 <script>
 import numberBox from "../numberBox/NumberBox.vue";
 import loopBox from "../loopcompontent/LoopCompontent.vue";
+
+
+// 加入购物车车功能
+// 点击加入购物车
 export default {
   data() {
     return {

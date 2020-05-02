@@ -17,6 +17,12 @@ import goodsList from './components/goodsList/GoodsList.vue'
 import goodsInfo from './components/goodsList/Goodsinfo.vue'
 //引入图片分享页
 import shareImg from './components/shareImg/shareImg.vue'
+// 导入视频专区页
+import videos from './components/videos/Videos.vue'
+// 导入联系我们页面
+import contactUs from './components/contactUs/ContactUs.vue'
+// 导入留言板
+import leaveMessage from './components/leaveMessage/LeaveMessage.vue'
 
 let router = new VueRouter({
     linkActiveClass: 'mui-active',
@@ -30,6 +36,10 @@ let router = new VueRouter({
         { path: '/home/goodsList', component: goodsList },
         { path: '/home/goodsInfo/:id', component: goodsInfo },
         { path: '/home/shareImg', component: shareImg },
+        { path: '/home/videos', component: videos },
+        { path: '/home/contactUs', component: contactUs },
+        { path: '/home/leaveMessage', component: leaveMessage },
+
 
 
 
