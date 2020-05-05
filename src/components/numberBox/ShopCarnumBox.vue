@@ -1,0 +1,38 @@
+<template>
+  <div class="numBoxContainer">
+    <div class="mui-numbox" data-numbox-min="0" data-numbox-max="9">
+      <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+      <input id="test" class="mui-input-numbox" type="number" :value="getCounts" ref ='numbox' @change ='countChange'/>
+      <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods:{
+      countChange(){
+        console.log(this.$refs.numbox.value)
+        // this.$emit('getCount',parseInt(this.$refs.numbox.value));
+       this.$store.commit('updataSelectCount',
+        {
+          id:this.goodsid,
+          count:this.$refs.numbox.value
+        })
+        
+      }
+    },
+    props:['getCounts','goodsid'],
+    mounted(){
+        this.mui('.mui-numbox').numbox()
+    }
+   
+};
+</script>
+<style scoped>
+.numBoxContainer {
+  display: inline-block;
+}
+</style>

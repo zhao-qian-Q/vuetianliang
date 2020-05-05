@@ -11,18 +11,19 @@
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <!-- 轮播图组件 -->
-          <loopBox :getloops="loopList"></loopBox>
+          <!-- <loopBox :getloops="loopList"></loopBox> -->
+          <img :src="this.goodsList.img_url" alt="" class="goodsImg">
         </div>
       </div>
     </div>
     <!-- 商品价格信息 -->
     <div class="mui-card">
-      <div class="mui-card-header">商品的标题价格</div>
+      <div class="mui-card-header">{{this.goodsList.title}}</div>
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <p>
-            <del>市场价：￥999</del>
-            <span>销售价：￥99</span>
+            <del>市场价：￥{{this.goodsList.old_price}}</del>
+            <span>销售价：￥{{this.goodsList.now_price}}</span>
           </p>
           <p>
             <span>购买数量</span>
@@ -40,9 +41,9 @@
       <div class="mui-card-header">商品参数</div>
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
-          <p>商品货号：</p>
-          <p>库存数量：30件</p>
-          <p>上架时间</p>
+          <p>商品货号：{{this.goodsList.goodsnum}}</p>
+          <p>库存数量：{{this.goodsList.own}}件</p>
+          <p>上架时间：{{this.goodsList.add_time}}</p>
         </div>
       </div>
     </div>
@@ -52,21 +53,43 @@
 import numberBox from "../numberBox/NumberBox.vue";
 import loopBox from "../loopcompontent/LoopCompontent.vue";
 
-
 // 加入购物车车功能
 // 点击加入购物车
 export default {
   data() {
     return {
+      id: this.$route.params.id, //回去当前页面的id
       loopList: [], //存放轮播图的
       flag: false,
-      getSelectCount: ""
+      getSelectCount: "1",
+      goodsList: {}
     };
   },
   created() {
     this.getLoopImg();
+    this.getgoodsList();
   },
   methods: {
+    // 获取商品信息
+    getgoodsList() {
+      this.$http
+        .get("http://yapi.shangyuninfo.com/mock/121/api/goodsinfo")
+        .then(result => {
+          console.log(result.body.message);
+          var res = result.body.message;
+          console.log(res.length)
+
+          // 当商品id=当前页面id时，显示商品信息
+          for(var i=0;i<res.length;i++){
+            if(res[i].id ==this.id){
+              this.goodsList = res[i]
+            }else{}
+            console.log(this.goodsList)
+          }
+         
+        })
+        .catch();
+    },
     getLoopImg() {
       this.$http
         .get("http://yapi.shangyuninfo.com/mock/121/api/getLoop_1587914991785")
@@ -79,6 +102,13 @@ export default {
     // 加入购物车
     addToShopCar() {
       this.flag = !this.flag;
+      var goodsinfos = {
+        id:this.id,
+        price:this.goodsList.now_price,
+        count:this.getSelectCount,
+        selected:true  //这是指购物车页面的开关是否开启，true代表选择商品
+
+      }
     },
     // 小球运动钩子函数
     beforeEnter(el) {
@@ -110,6 +140,7 @@ export default {
     getSelectdCount(count) {
       this.getSelectCount = count;
       console.log("sss" + count);
+      // console.log(this.id)
     }
   },
   components: {
@@ -128,5 +159,9 @@ export default {
   top: 390px;
   left: 139px;
   z-index: 999;
+}
+.goodsImg {
+  width: 100%;
+  height: 100%;
 }
 </style>
